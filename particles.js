@@ -21,16 +21,16 @@ var pJS = function(tag_id, params){
     particles: {
       number: {
         value: 400,
-        density: {
-          enable: false,
-          value_area: 800
-        }
+        // density: {
+        //   enable: false,
+        //   value_area: 800
+        // }
       },
       color: {
         value: '#fff'
       },
       shape: {
-        type: 'circle',
+        type: 'triangle',
         stroke: {
           width: 0,
           color: '#ff0000'
@@ -55,7 +55,7 @@ var pJS = function(tag_id, params){
         }
       },
       size: {
-        value: 20,
+        value: 5,
         random: false,
         anim: {
           enable: false,
@@ -102,6 +102,7 @@ var pJS = function(tag_id, params){
 
   /* params settings */
   if(params){
+    // Extend met de parameters als gegeven in app.js
     Object.deepExtend(pJS, params);
   }
 
@@ -166,13 +167,14 @@ var pJS = function(tag_id, params){
           pJS.canvas.el.height = pJS.canvas.h;
 
           /* repaint canvas on anim disabled */
-          if(!pJS.particles.move.enable){
-            pJS.fn.particlesEmpty();
-            pJS.fn.particlesCreate();
-            pJS.fn.particlesDraw();
-            // PECT geen density nodig
-            // pJS.fn.vendors.densityAutoParticles();
-          }
+          // PECT particles.move.enable is altijd true
+          // if(!pJS.particles.move.enable){
+          //   pJS.fn.particlesEmpty();
+          //   pJS.fn.particlesCreate();
+          //   pJS.fn.particlesDraw();
+          //   // PECT geen density nodig
+          //   // pJS.fn.vendors.densityAutoParticles();
+          // }
 
         /* density particles enabled */
         // PECT geen density nodig
@@ -469,11 +471,12 @@ var pJS = function(tag_id, params){
       // }
 
       /* move the particle */
-      if(pJS.particles.move.enable){
+      // PECT particles.move.enable is altijd true
+      // if(pJS.particles.move.enable){
         var ms = pJS.particles.move.speed/2;
         p.x += p.vx * ms;
         p.y += p.vy * ms;
-      }
+      // }
 
       /* change opacity status */
       if(pJS.particles.opacity.anim.enable) {
@@ -682,9 +685,10 @@ var pJS = function(tag_id, params){
         )
       )
       if(i == nb-1){
-        if(!pJS.particles.move.enable){
-          pJS.fn.particlesDraw();
-        }
+        // PECT particles.move.enable is altijd true
+        // if(!pJS.particles.move.enable){
+        //   pJS.fn.particlesDraw();
+        // }
         pJS.tmp.pushing = false;
       }
     }
@@ -881,8 +885,10 @@ var pJS = function(tag_id, params){
 
         if(pJS.tmp.count_svg >= pJS.particles.number.value){
           pJS.fn.particlesDraw();
-          if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-          else pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
+          // PECT particles.move.enable is altijd true
+          // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+          // else 
+          pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
         }else{
           //console.log('still loading...');
           if(!pJS.tmp.img_error) pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
@@ -892,8 +898,10 @@ var pJS = function(tag_id, params){
 
         if(pJS.tmp.img_obj != undefined){
           pJS.fn.particlesDraw();
-          if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-          else pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
+          // PECT particles.move.enable is altijd true
+          // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+          // else 
+          pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
         }else{
           if(!pJS.tmp.img_error) pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
         }
@@ -902,8 +910,10 @@ var pJS = function(tag_id, params){
 
     }else{
       pJS.fn.particlesDraw();
-      if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-      else pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
+      // PECT particles.move.enable is altijd true
+      // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+      // else 
+      pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
     }
 
   };

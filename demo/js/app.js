@@ -44,12 +44,12 @@ particlesJS('particles-js',
         }
       },
       "size": {
-        "value": 5,
-        "random": true,
+        "value": 3,
+        "random": false,
         "anim": {
-          "enable": false,
-          "speed": 40,
-          "size_min": 0.1,
+          "enable": true,
+          "speed": 10,
+          "size_min": 2,
           "sync": false
         }
       },
@@ -57,14 +57,14 @@ particlesJS('particles-js',
         "enable": true,
         "distance": 150,
         "color": "#ffffff",
-        "opacity": 0.4,
+        "opacity": 0.6,
         "width": 1
       },
       "move": {
         "enable": true,
         "speed": 6,
         "direction": "none",
-        "random": false,
+        "random": true,
         "straight": false,
         "bounce": true,
         // we ondersteunen alleen out_mode=bounce
@@ -84,14 +84,14 @@ particlesJS('particles-js',
       },
     },
     "retina_detect": true,
-    "config_demo": {
-      "hide_card": false,
-      "background_color": "#b61924",
-      "background_image": "",
-      "background_position": "50% 50%",
-      "background_repeat": "no-repeat",
-      "background_size": "cover"
-    }
+    // "config_demo": {
+    //   "hide_card": false,
+    //   "background_color": "#b61924",
+    //   "background_image": "",
+    //   "background_position": "50% 50%",
+    //   "background_repeat": "no-repeat",
+    //   "background_size": "cover"
+    // }
   }
 
 );
