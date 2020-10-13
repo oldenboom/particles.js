@@ -1,9 +1,9 @@
 ## particles.js
 
-### A lightweight JavaScript library for creating particles.
+### Very basic particles script
 
 ------------------------------
-### `Demo / Generator`
+### `Original version`
 
 <a href="http://vincentgarreau.com/particles.js/" target="_blank"><img src="http://vincentgarreau.com/particles.js/assets/img/github-screen.jpg" alt="particles.js generator" /></a>
 
@@ -14,138 +14,9 @@ CodePen demo: <br />
 http://codepen.io/VincentGarreau/pen/pnlso
 
 -------------------------------
-### `Usage`
+### `This fork`
 
-Load particles.js and configure the particles:
-
-**index.html**
-```html
-<div id="particles-js"></div>
-
-<script src="particles.js"></script>
-```
-
-**app.js**
-```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', 'assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-});
-```
-
-**particles.json**
-```javascript
-{
-  "particles": {
-    "number": {
-      "value": 80,
-      "density": {
-        "enable": true,
-        "value_area": 800
-      }
-    },
-    "color": {
-      "value": "#ffffff"
-    },
-    "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.5,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 1,
-        "opacity_min": 0.1,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 10,
-      "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 80,
-        "size_min": 0.1,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 300,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 2
-    },
-    "move": {
-      "enable": true,
-      "speed": 12,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "out_mode": "out",
-      "bounce": false,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": false,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": true,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 800,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "bubble": {
-        "distance": 800,
-        "size": 80,
-        "duration": 2,
-        "opacity": 0.8,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 400,
-        "duration": 0.4
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
-    }
-  },
-  "retina_detect": true
-}
-```
+With this fork a lot of functionality got removed from the original particles.js. Also some functionality got added.
 
 -------------------------------
 
@@ -186,26 +57,26 @@ key | option type / notes | example
 `particles.move.direction` | string | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"`
 `particles.move.random` | boolean | `true` / `false`
 `particles.move.straight` | boolean | `true` / `false`
-`particles.move.out_mode` | string <br /> (out of canvas) | `"out"` <br /> `"bounce"`
+`particles.move.out_mode` | NOT SUPPORTED
 `particles.move.bounce` | boolean <br /> (between particles) | `true` / `false`
-`particles.move.attract.enable` | boolean | `true` / `false`
-`particles.move.attract.rotateX` | number | `3000`
-`particles.move.attract.rotateY` | number | `1500`
+`particles.move.attract.enable` | NOT SUPPORTED
+`particles.move.attract.rotateX` | NOT SUPPORTED
+`particles.move.attract.rotateY` | NOT SUPPORTED
 `interactivity.detect_on` | string | `"canvas", "window"`
-`interactivity.events.onhover.enable` | boolean | `true` / `false`
-`interactivity.events.onhover.mode` | string <br /> array selection | `"grab"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["grab", "bubble"]`
-`interactivity.events.onclick.enable` | boolean | `true` / `false`
-`interactivity.events.onclick.mode` | string <br /> array selection | `"push"` <br /> `"remove"` <br /> `"bubble"` <br /> `"repulse"` <br /> `["push", "repulse"]`
+`interactivity.events.onhover.enable` | NOT SUPPORTED
+`interactivity.events.onhover.mode` | NOT SUPPORTED
+`interactivity.events.onclick.enable` | NOT SUPPORTED
+`interactivity.events.onclick.mode` | NOT SUPPORTED
 `interactivity.events.resize` | boolean | `true` / `false`
-`interactivity.events.modes.grab.distance` | number | `100`
+`interactivity.events.modes.grab.distance` NOT SUPPORTED
 `interactivity.events.modes.grab.line_linked.opacity` | number (0 to 1) | `0.75`
-`interactivity.events.modes.bubble.distance` | number | `100`
-`interactivity.events.modes.bubble.size` | number | `40`
-`interactivity.events.modes.bubble.duration` | number <br /> (second) | `0.4`
-`interactivity.events.modes.repulse.distance` | number | `200`
-`interactivity.events.modes.repulse.duration` | number <br /> (second) | `1.2`
-`interactivity.events.modes.push.particles_nb` | number | `4`
-`interactivity.events.modes.push.particles_nb` | number | `4`
+`interactivity.events.modes.bubble.distance` NOT SUPPORTED
+`interactivity.events.modes.bubble.size` NOT SUPPORTED
+`interactivity.events.modes.bubble.duration` NOT SUPPORTED
+`interactivity.events.modes.repulse.distance` NOT SUPPORTED
+`interactivity.events.modes.repulse.duration` NOT SUPPORTED
+`interactivity.events.modes.push.particles_nb` NOT SUPPORTED
+`interactivity.events.modes.push.particles_nb` NOT SUPPORTED
 `retina_detect` | boolean | `true` / `false`
 
 -------------------------------

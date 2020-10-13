@@ -77,52 +77,57 @@ var pJS = function(tag_id, params){
         direction: 'none',
         random: false,
         straight: false,
-        out_mode: 'out',
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 3000,
-          rotateY: 3000
-        }
+        // PECT out_mode should be bounce
+        // out_mode: 'bounce',
+        bounce: true, 
+        // PECT attract hebben we niet nodig
+        // attract: {
+        //   enable: false,
+        //   rotateX: 3000,
+        //   rotateY: 3000
+        // }
       },
       array: []
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
-        onhover: {
-          enable: true,
-          mode: 'grab'
-        },
-        onclick: {
-          enable: true,
-          mode: 'push'
-        },
+      // PECT onhover en onclick events gebruiken we niet
+      //   onhover: {
+      //     enable: true,
+      //     mode: 'grab'
+      //   },
+      //   onclick: {
+      //     enable: true,
+      //     mode: 'push'
+      //   },
         resize: true
       },
-      modes: {
-        grab:{
-          distance: 100,
-          line_linked:{
-            opacity: 1
-          }
-        },
-        bubble:{
-          distance: 200,
-          size: 80,
-          duration: 0.4
-        },
-        repulse:{
-          distance: 200,
-          duration: 0.4
-        },
-        push:{
-          particles_nb: 4
-        },
-        remove:{
-          particles_nb: 2
-        }
-      },
+      // PECT modes gebruiken we niet
+      // modes: {
+      //   // PECT dit gebruiken we niet
+      //   // grab:{
+      //   //   distance: 100,
+      //   //   line_linked:{
+      //   //     opacity: 1
+      //   //   }
+      //   // },
+      //   // bubble:{
+      //   //   distance: 200,
+      //   //   size: 80,
+      //   //   duration: 0.4
+      //   // },
+      //   // repulse:{
+      //   //   distance: 200,
+      //   //   duration: 0.4
+      //   // },
+      //   // push:{
+      //   //   particles_nb: 4
+      //   // },
+      //   // remove:{
+      //   //   particles_nb: 2
+      //   // }
+      // },
       mouse:{}
     },
     retina_detect: false,
@@ -147,10 +152,11 @@ var pJS = function(tag_id, params){
     move_speed: pJS.particles.move.speed,
     line_linked_distance: pJS.particles.line_linked.distance,
     line_linked_width: pJS.particles.line_linked.width,
-    mode_grab_distance: pJS.interactivity.modes.grab.distance,
-    mode_bubble_distance: pJS.interactivity.modes.bubble.distance,
-    mode_bubble_size: pJS.interactivity.modes.bubble.size,
-    mode_repulse_distance: pJS.interactivity.modes.repulse.distance
+    // PECT dit gebruiken we niet
+    // mode_grab_distance: pJS.interactivity.modes.grab.distance,
+    // mode_bubble_distance: pJS.interactivity.modes.bubble.distance,
+    // mode_bubble_size: pJS.interactivity.modes.bubble.size,
+    // mode_repulse_distance: pJS.interactivity.modes.repulse.distance
   };
 
 
@@ -172,11 +178,13 @@ var pJS = function(tag_id, params){
     pJS.particles.size.anim.speed = pJS.tmp.obj.size_anim_speed * pJS.canvas.pxratio;
     pJS.particles.move.speed = pJS.tmp.obj.move_speed * pJS.canvas.pxratio;
     pJS.particles.line_linked.distance = pJS.tmp.obj.line_linked_distance * pJS.canvas.pxratio;
-    pJS.interactivity.modes.grab.distance = pJS.tmp.obj.mode_grab_distance * pJS.canvas.pxratio;
-    pJS.interactivity.modes.bubble.distance = pJS.tmp.obj.mode_bubble_distance * pJS.canvas.pxratio;
+    // PECT dit gebruiken we niet
+    // pJS.interactivity.modes.grab.distance = pJS.tmp.obj.mode_grab_distance * pJS.canvas.pxratio;
+    // pJS.interactivity.modes.bubble.distance = pJS.tmp.obj.mode_bubble_distance * pJS.canvas.pxratio;
     pJS.particles.line_linked.width = pJS.tmp.obj.line_linked_width * pJS.canvas.pxratio;
-    pJS.interactivity.modes.bubble.size = pJS.tmp.obj.mode_bubble_size * pJS.canvas.pxratio;
-    pJS.interactivity.modes.repulse.distance = pJS.tmp.obj.mode_repulse_distance * pJS.canvas.pxratio;
+    // PECT dit gebruiken we niet
+    // pJS.interactivity.modes.bubble.size = pJS.tmp.obj.mode_bubble_size * pJS.canvas.pxratio;
+    // pJS.interactivity.modes.repulse.distance = pJS.tmp.obj.mode_repulse_distance * pJS.canvas.pxratio;
 
   };
 
@@ -401,17 +409,19 @@ var pJS = function(tag_id, params){
 
     var p = this;
 
-    if(p.radius_bubble != undefined){
-      var radius = p.radius_bubble; 
-    }else{
+    // PECT We gebruiken geen bubble
+    // if(p.radius_bubble != undefined){
+    //   var radius = p.radius_bubble; 
+    // }else{
       var radius = p.radius;
-    }
+    // }
 
-    if(p.opacity_bubble != undefined){
-      var opacity = p.opacity_bubble;
-    }else{
+    // PECT We gebruiken geen bubble
+    // if(p.opacity_bubble != undefined){
+    //   var opacity = p.opacity_bubble;
+    // }else{
       var opacity = p.opacity;
-    }
+    // }
 
     if(p.color.rgb){
       var color_value = 'rgba('+p.color.rgb.r+','+p.color.rgb.g+','+p.color.rgb.b+','+opacity+')';
@@ -550,21 +560,22 @@ var pJS = function(tag_id, params){
       }
 
       /* change particle position if it is out of canvas */
-      if(pJS.particles.move.out_mode == 'bounce'){
+      // PECT we ondersteunen alleen bounce
+      // if(pJS.particles.move.out_mode == 'bounce'){
         var new_pos = {
           x_left: p.radius,
           x_right:  pJS.canvas.w,
           y_top: p.radius,
           y_bottom: pJS.canvas.h
         }
-      }else{
-        var new_pos = {
-          x_left: -p.radius,
-          x_right: pJS.canvas.w + p.radius,
-          y_top: -p.radius,
-          y_bottom: pJS.canvas.h + p.radius
-        }
-      }
+      // }else{
+      //   var new_pos = {
+      //     x_left: -p.radius,
+      //     x_right: pJS.canvas.w + p.radius,
+      //     y_top: -p.radius,
+      //     y_bottom: pJS.canvas.h + p.radius
+      //   }
+      // }
 
       if(p.x - p.radius > pJS.canvas.w){
         p.x = new_pos.x_left;
@@ -584,31 +595,35 @@ var pJS = function(tag_id, params){
       }
 
       /* out of canvas modes */
-      switch(pJS.particles.move.out_mode){
-        case 'bounce':
+      // PECT we ondersteunen uitsluitend bounce
+      // switch(pJS.particles.move.out_mode){
+      //   case 'bounce':
           if (p.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
           else if (p.x - p.radius < 0) p.vx = -p.vx;
           if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
           else if (p.y - p.radius < 0) p.vy = -p.vy;
-        break;
-      }
+      //   break;
+      // }
 
       /* events */
-      if(isInArray('grab', pJS.interactivity.events.onhover.mode)){
-        pJS.fn.modes.grabParticle(p);
-      }
+      // PECT we doen niets met onhover en onclick
+      // if(isInArray('grab', pJS.interactivity.events.onhover.mode)){
+      //   pJS.fn.modes.grabParticle(p);
+      // }
 
-      if(isInArray('bubble', pJS.interactivity.events.onhover.mode) || isInArray('bubble', pJS.interactivity.events.onclick.mode)){
-        pJS.fn.modes.bubbleParticle(p);
-      }
+      // if(isInArray('bubble', pJS.interactivity.events.onhover.mode) || isInArray('bubble', pJS.interactivity.events.onclick.mode)){
+      //   pJS.fn.modes.bubbleParticle(p);
+      // }
 
-      if(isInArray('repulse', pJS.interactivity.events.onhover.mode) || isInArray('repulse', pJS.interactivity.events.onclick.mode)){
-        pJS.fn.modes.repulseParticle(p);
-      }
+      // if(isInArray('repulse', pJS.interactivity.events.onhover.mode) || isInArray('repulse', pJS.interactivity.events.onclick.mode)){
+      //   pJS.fn.modes.repulseParticle(p);
+      // }
 
       /* interaction auto between particles */
+      // PECT attract wordt niet ondersteund
       if(pJS.particles.line_linked.enable || pJS.particles.move.attract.enable){
-        for(var j = i + 1; j < pJS.particles.array.length; j++){
+        // if(pJS.particles.line_linked.enable || pJS.particles.move.attract.enable){
+          for(var j = i + 1; j < pJS.particles.array.length; j++){
           var p2 = pJS.particles.array[j];
 
           /* link particles */
@@ -617,9 +632,10 @@ var pJS = function(tag_id, params){
           }
 
           /* attract particles */
-          if(pJS.particles.move.attract.enable){
-            pJS.fn.interact.attractParticles(p,p2);
-          }
+          // PECT hebben we niet nodig
+          // if(pJS.particles.move.attract.enable){
+          //   pJS.fn.interact.attractParticles(p,p2);
+          // }
 
           /* bounce particles */
           if(pJS.particles.move.bounce){
@@ -674,6 +690,7 @@ var pJS = function(tag_id, params){
   /* ---------- pJS functions - particles interaction ------------ */
 
   pJS.fn.interact.linkParticles = function(p1, p2){
+    /* PECT Trekt de lijntjes tussen de punten */
 
     var dx = p1.x - p2.x,
         dy = p1.y - p2.y,
@@ -707,24 +724,25 @@ var pJS = function(tag_id, params){
 
 
   pJS.fn.interact.attractParticles  = function(p1, p2){
+    /* PECT Soort van zwaartekracht: trekt particles een kant op. Hebben we niet nodig */
 
-    /* condensed particles */
-    var dx = p1.x - p2.x,
-        dy = p1.y - p2.y,
-        dist = Math.sqrt(dx*dx + dy*dy);
+    // /* condensed particles */
+    // var dx = p1.x - p2.x,
+    //     dy = p1.y - p2.y,
+    //     dist = Math.sqrt(dx*dx + dy*dy);
 
-    if(dist <= pJS.particles.line_linked.distance){
+    // if(dist <= pJS.particles.line_linked.distance){
 
-      var ax = dx/(pJS.particles.move.attract.rotateX*1000),
-          ay = dy/(pJS.particles.move.attract.rotateY*1000);
+    //   var ax = dx/(pJS.particles.move.attract.rotateX*1000),
+    //       ay = dy/(pJS.particles.move.attract.rotateY*1000);
 
-      p1.vx -= ax;
-      p1.vy -= ay;
+    //   p1.vx -= ax;
+    //   p1.vy -= ay;
 
-      p2.vx += ax;
-      p2.vy += ay;
+    //   p2.vx += ax;
+    //   p2.vy += ay;
 
-    }
+    // }
     
 
   }
@@ -751,6 +769,7 @@ var pJS = function(tag_id, params){
   /* ---------- pJS functions - modes events ------------ */
 
   pJS.fn.modes.pushParticles = function(nb, pos){
+    // Plaats particles op het scherm
 
     pJS.tmp.pushing = true;
 
@@ -775,285 +794,291 @@ var pJS = function(tag_id, params){
 
   };
 
+  // PECT dit gebruiken we niet
+  // pJS.fn.modes.removeParticles = function(nb){
 
-  pJS.fn.modes.removeParticles = function(nb){
+  //   pJS.particles.array.splice(0, nb);
+  //   if(!pJS.particles.move.enable){
+  //     pJS.fn.particlesDraw();
+  //   }
 
-    pJS.particles.array.splice(0, nb);
-    if(!pJS.particles.move.enable){
-      pJS.fn.particlesDraw();
-    }
-
-  };
+  // };
 
 
-  pJS.fn.modes.bubbleParticle = function(p){
+  // PECT dit gebruiken we niet
+  // pJS.fn.modes.bubbleParticle = function(p){
 
-    /* on hover event */
-    if(pJS.interactivity.events.onhover.enable && isInArray('bubble', pJS.interactivity.events.onhover.mode)){
+  //   /* on hover event */
+  //   if(pJS.interactivity.events.onhover.enable && isInArray('bubble', pJS.interactivity.events.onhover.mode)){
 
-      var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
-          dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
-          dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
-          ratio = 1 - dist_mouse / pJS.interactivity.modes.bubble.distance;
+  //     var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
+  //         dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
+  //         dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
+  //         ratio = 1 - dist_mouse / pJS.interactivity.modes.bubble.distance;
 
-      function init(){
-        p.opacity_bubble = p.opacity;
-        p.radius_bubble = p.radius;
-      }
+  //     function init(){
+  //       p.opacity_bubble = p.opacity;
+  //       p.radius_bubble = p.radius;
+  //     }
 
-      /* mousemove - check ratio */
-      if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
+  //     /* mousemove - check ratio */
+  //     if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
 
-        if(ratio >= 0 && pJS.interactivity.status == 'mousemove'){
+  //       if(ratio >= 0 && pJS.interactivity.status == 'mousemove'){
           
-          /* size */
-          if(pJS.interactivity.modes.bubble.size != pJS.particles.size.value){
+  //         /* size */
+  //         if(pJS.interactivity.modes.bubble.size != pJS.particles.size.value){
 
-            if(pJS.interactivity.modes.bubble.size > pJS.particles.size.value){
-              var size = p.radius + (pJS.interactivity.modes.bubble.size*ratio);
-              if(size >= 0){
-                p.radius_bubble = size;
-              }
-            }else{
-              var dif = p.radius - pJS.interactivity.modes.bubble.size,
-                  size = p.radius - (dif*ratio);
-              if(size > 0){
-                p.radius_bubble = size;
-              }else{
-                p.radius_bubble = 0;
-              }
-            }
+  //           if(pJS.interactivity.modes.bubble.size > pJS.particles.size.value){
+  //             var size = p.radius + (pJS.interactivity.modes.bubble.size*ratio);
+  //             if(size >= 0){
+  //               p.radius_bubble = size;
+  //             }
+  //           }else{
+  //             var dif = p.radius - pJS.interactivity.modes.bubble.size,
+  //                 size = p.radius - (dif*ratio);
+  //             if(size > 0){
+  //               p.radius_bubble = size;
+  //             }else{
+  //               p.radius_bubble = 0;
+  //             }
+  //           }
 
-          }
+  //         }
 
-          /* opacity */
-          if(pJS.interactivity.modes.bubble.opacity != pJS.particles.opacity.value){
+  //         /* opacity */
+  //         if(pJS.interactivity.modes.bubble.opacity != pJS.particles.opacity.value){
 
-            if(pJS.interactivity.modes.bubble.opacity > pJS.particles.opacity.value){
-              var opacity = pJS.interactivity.modes.bubble.opacity*ratio;
-              if(opacity > p.opacity && opacity <= pJS.interactivity.modes.bubble.opacity){
-                p.opacity_bubble = opacity;
-              }
-            }else{
-              var opacity = p.opacity - (pJS.particles.opacity.value-pJS.interactivity.modes.bubble.opacity)*ratio;
-              if(opacity < p.opacity && opacity >= pJS.interactivity.modes.bubble.opacity){
-                p.opacity_bubble = opacity;
-              }
-            }
+  //           if(pJS.interactivity.modes.bubble.opacity > pJS.particles.opacity.value){
+  //             var opacity = pJS.interactivity.modes.bubble.opacity*ratio;
+  //             if(opacity > p.opacity && opacity <= pJS.interactivity.modes.bubble.opacity){
+  //               p.opacity_bubble = opacity;
+  //             }
+  //           }else{
+  //             var opacity = p.opacity - (pJS.particles.opacity.value-pJS.interactivity.modes.bubble.opacity)*ratio;
+  //             if(opacity < p.opacity && opacity >= pJS.interactivity.modes.bubble.opacity){
+  //               p.opacity_bubble = opacity;
+  //             }
+  //           }
 
-          }
+  //         }
 
-        }
+  //       }
 
-      }else{
-        init();
-      }
+  //     }else{
+  //       init();
+  //     }
 
 
-      /* mouseleave */
-      if(pJS.interactivity.status == 'mouseleave'){
-        init();
-      }
+  //     /* mouseleave */
+  //     if(pJS.interactivity.status == 'mouseleave'){
+  //       init();
+  //     }
     
-    }
+  //   }
 
-    /* on click event */
-    else if(pJS.interactivity.events.onclick.enable && isInArray('bubble', pJS.interactivity.events.onclick.mode)){
-
-
-      if(pJS.tmp.bubble_clicking){
-        var dx_mouse = p.x - pJS.interactivity.mouse.click_pos_x,
-            dy_mouse = p.y - pJS.interactivity.mouse.click_pos_y,
-            dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
-            time_spent = (new Date().getTime() - pJS.interactivity.mouse.click_time)/1000;
-
-        if(time_spent > pJS.interactivity.modes.bubble.duration){
-          pJS.tmp.bubble_duration_end = true;
-        }
-
-        if(time_spent > pJS.interactivity.modes.bubble.duration*2){
-          pJS.tmp.bubble_clicking = false;
-          pJS.tmp.bubble_duration_end = false;
-        }
-      }
+  //   /* on click event */
+  //   else if(pJS.interactivity.events.onclick.enable && isInArray('bubble', pJS.interactivity.events.onclick.mode)){
 
 
-      function process(bubble_param, particles_param, p_obj_bubble, p_obj, id){
+  //     if(pJS.tmp.bubble_clicking){
+  //       var dx_mouse = p.x - pJS.interactivity.mouse.click_pos_x,
+  //           dy_mouse = p.y - pJS.interactivity.mouse.click_pos_y,
+  //           dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse),
+  //           time_spent = (new Date().getTime() - pJS.interactivity.mouse.click_time)/1000;
 
-        if(bubble_param != particles_param){
+  //       if(time_spent > pJS.interactivity.modes.bubble.duration){
+  //         pJS.tmp.bubble_duration_end = true;
+  //       }
 
-          if(!pJS.tmp.bubble_duration_end){
-            if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
-              if(p_obj_bubble != undefined) var obj = p_obj_bubble;
-              else var obj = p_obj;
-              if(obj != bubble_param){
-                var value = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration);
-                if(id == 'size') p.radius_bubble = value;
-                if(id == 'opacity') p.opacity_bubble = value;
-              }
-            }else{
-              if(id == 'size') p.radius_bubble = undefined;
-              if(id == 'opacity') p.opacity_bubble = undefined;
-            }
-          }else{
-            if(p_obj_bubble != undefined){
-              var value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration),
-                  dif = bubble_param - value_tmp;
-                  value = bubble_param + dif;
-              if(id == 'size') p.radius_bubble = value;
-              if(id == 'opacity') p.opacity_bubble = value;
-            }
-          }
-
-        }
-
-      }
-
-      if(pJS.tmp.bubble_clicking){
-        /* size */
-        process(pJS.interactivity.modes.bubble.size, pJS.particles.size.value, p.radius_bubble, p.radius, 'size');
-        /* opacity */
-        process(pJS.interactivity.modes.bubble.opacity, pJS.particles.opacity.value, p.opacity_bubble, p.opacity, 'opacity');
-      }
-
-    }
-
-  };
+  //       if(time_spent > pJS.interactivity.modes.bubble.duration*2){
+  //         pJS.tmp.bubble_clicking = false;
+  //         pJS.tmp.bubble_duration_end = false;
+  //       }
+  //     }
 
 
-  pJS.fn.modes.repulseParticle = function(p){
+  //     function process(bubble_param, particles_param, p_obj_bubble, p_obj, id){
 
-    if(pJS.interactivity.events.onhover.enable && isInArray('repulse', pJS.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
+  //       if(bubble_param != particles_param){
 
-      var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
-          dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
-          dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse);
+  //         if(!pJS.tmp.bubble_duration_end){
+  //           if(dist_mouse <= pJS.interactivity.modes.bubble.distance){
+  //             if(p_obj_bubble != undefined) var obj = p_obj_bubble;
+  //             else var obj = p_obj;
+  //             if(obj != bubble_param){
+  //               var value = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration);
+  //               if(id == 'size') p.radius_bubble = value;
+  //               if(id == 'opacity') p.opacity_bubble = value;
+  //             }
+  //           }else{
+  //             if(id == 'size') p.radius_bubble = undefined;
+  //             if(id == 'opacity') p.opacity_bubble = undefined;
+  //           }
+  //         }else{
+  //           if(p_obj_bubble != undefined){
+  //             var value_tmp = p_obj - (time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration),
+  //                 dif = bubble_param - value_tmp;
+  //                 value = bubble_param + dif;
+  //             if(id == 'size') p.radius_bubble = value;
+  //             if(id == 'opacity') p.opacity_bubble = value;
+  //           }
+  //         }
 
-      var normVec = {x: dx_mouse/dist_mouse, y: dy_mouse/dist_mouse},
-          repulseRadius = pJS.interactivity.modes.repulse.distance,
-          velocity = 100,
-          repulseFactor = clamp((1/repulseRadius)*(-1*Math.pow(dist_mouse/repulseRadius,2)+1)*repulseRadius*velocity, 0, 50);
+  //       }
+
+  //     }
+
+  //     if(pJS.tmp.bubble_clicking){
+  //       /* size */
+  //       process(pJS.interactivity.modes.bubble.size, pJS.particles.size.value, p.radius_bubble, p.radius, 'size');
+  //       /* opacity */
+  //       process(pJS.interactivity.modes.bubble.opacity, pJS.particles.opacity.value, p.opacity_bubble, p.opacity, 'opacity');
+  //     }
+
+  //   }
+
+  // };
+
+
+  // PECT dit gebruiken we niet
+  // pJS.fn.modes.repulseParticle = function(p){
+
+  //   if(pJS.interactivity.events.onhover.enable && isInArray('repulse', pJS.interactivity.events.onhover.mode) && pJS.interactivity.status == 'mousemove') {
+
+  //     var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
+  //         dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
+  //         dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse);
+
+  //     var normVec = {x: dx_mouse/dist_mouse, y: dy_mouse/dist_mouse},
+  //         repulseRadius = pJS.interactivity.modes.repulse.distance,
+  //         velocity = 100,
+  //         repulseFactor = clamp((1/repulseRadius)*(-1*Math.pow(dist_mouse/repulseRadius,2)+1)*repulseRadius*velocity, 0, 50);
       
-      var pos = {
-        x: p.x + normVec.x * repulseFactor,
-        y: p.y + normVec.y * repulseFactor
-      }
+  //     var pos = {
+  //       x: p.x + normVec.x * repulseFactor,
+  //       y: p.y + normVec.y * repulseFactor
+  //     }
 
-      if(pJS.particles.move.out_mode == 'bounce'){
-        if(pos.x - p.radius > 0 && pos.x + p.radius < pJS.canvas.w) p.x = pos.x;
-        if(pos.y - p.radius > 0 && pos.y + p.radius < pJS.canvas.h) p.y = pos.y;
-      }else{
-        p.x = pos.x;
-        p.y = pos.y;
-      }
+  //     // PECT we ondersteunen uitsluitend bounce
+  //     // if(pJS.particles.move.out_mode == 'bounce'){
+  //       if(pos.x - p.radius > 0 && pos.x + p.radius < pJS.canvas.w) p.x = pos.x;
+  //       if(pos.y - p.radius > 0 && pos.y + p.radius < pJS.canvas.h) p.y = pos.y;
+  //     // }else{
+  //     //   p.x = pos.x;
+  //     //   p.y = pos.y;
+  //     // }
     
-    }
+  //   }
 
 
-    else if(pJS.interactivity.events.onclick.enable && isInArray('repulse', pJS.interactivity.events.onclick.mode)) {
+  //   else if(pJS.interactivity.events.onclick.enable && isInArray('repulse', pJS.interactivity.events.onclick.mode)) {
 
-      if(!pJS.tmp.repulse_finish){
-        pJS.tmp.repulse_count++;
-        if(pJS.tmp.repulse_count == pJS.particles.array.length){
-          pJS.tmp.repulse_finish = true;
-        }
-      }
+  //     if(!pJS.tmp.repulse_finish){
+  //       pJS.tmp.repulse_count++;
+  //       if(pJS.tmp.repulse_count == pJS.particles.array.length){
+  //         pJS.tmp.repulse_finish = true;
+  //       }
+  //     }
 
-      if(pJS.tmp.repulse_clicking){
+  //     if(pJS.tmp.repulse_clicking){
 
-        var repulseRadius = Math.pow(pJS.interactivity.modes.repulse.distance/6, 3);
+  //       var repulseRadius = Math.pow(pJS.interactivity.modes.repulse.distance/6, 3);
 
-        var dx = pJS.interactivity.mouse.click_pos_x - p.x,
-            dy = pJS.interactivity.mouse.click_pos_y - p.y,
-            d = dx*dx + dy*dy;
+  //       var dx = pJS.interactivity.mouse.click_pos_x - p.x,
+  //           dy = pJS.interactivity.mouse.click_pos_y - p.y,
+  //           d = dx*dx + dy*dy;
 
-        var force = -repulseRadius / d * 1;
+  //       var force = -repulseRadius / d * 1;
 
-        function process(){
+  //       function process(){
 
-          var f = Math.atan2(dy,dx);
-          p.vx = force * Math.cos(f);
-          p.vy = force * Math.sin(f);
+  //         var f = Math.atan2(dy,dx);
+  //         p.vx = force * Math.cos(f);
+  //         p.vy = force * Math.sin(f);
 
-          if(pJS.particles.move.out_mode == 'bounce'){
-            var pos = {
-              x: p.x + p.vx,
-              y: p.y + p.vy
-            }
-            if (pos.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
-            else if (pos.x - p.radius < 0) p.vx = -p.vx;
-            if (pos.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
-            else if (pos.y - p.radius < 0) p.vy = -p.vy;
-          }
+  //         // PECT we ondersteunen alleen bounce
+  //         // if(pJS.particles.move.out_mode == 'bounce'){
+  //           var pos = {
+  //             x: p.x + p.vx,
+  //             y: p.y + p.vy
+  //           }
+  //           if (pos.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
+  //           else if (pos.x - p.radius < 0) p.vx = -p.vx;
+  //           if (pos.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
+  //           else if (pos.y - p.radius < 0) p.vy = -p.vy;
+  //         // }
 
-        }
+  //       }
 
-        // default
-        if(d <= repulseRadius){
-          process();
-        }
+  //       // default
+  //       if(d <= repulseRadius){
+  //         process();
+  //       }
 
-        // bang - slow motion mode
-        // if(!pJS.tmp.repulse_finish){
-        //   if(d <= repulseRadius){
-        //     process();
-        //   }
-        // }else{
-        //   process();
-        // }
+  //       // bang - slow motion mode
+  //       // if(!pJS.tmp.repulse_finish){
+  //       //   if(d <= repulseRadius){
+  //       //     process();
+  //       //   }
+  //       // }else{
+  //       //   process();
+  //       // }
         
 
-      }else{
+  //     }else{
 
-        if(pJS.tmp.repulse_clicking == false){
+  //       if(pJS.tmp.repulse_clicking == false){
 
-          p.vx = p.vx_i;
-          p.vy = p.vy_i;
+  //         p.vx = p.vx_i;
+  //         p.vy = p.vy_i;
         
-        }
+  //       }
 
-      }
+  //     }
 
-    }
+  //   }
 
-  }
+  // }
 
 
-  pJS.fn.modes.grabParticle = function(p){
+  // PECT dit gebruiken we niet
+  // pJS.fn.modes.grabParticle = function(p){
 
-    if(pJS.interactivity.events.onhover.enable && pJS.interactivity.status == 'mousemove'){
 
-      var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
-          dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
-          dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse);
+    // if(pJS.interactivity.events.onhover.enable && pJS.interactivity.status == 'mousemove'){
 
-      /* draw a line between the cursor and the particle if the distance between them is under the config distance */
-      if(dist_mouse <= pJS.interactivity.modes.grab.distance){
+    //   var dx_mouse = p.x - pJS.interactivity.mouse.pos_x,
+    //       dy_mouse = p.y - pJS.interactivity.mouse.pos_y,
+    //       dist_mouse = Math.sqrt(dx_mouse*dx_mouse + dy_mouse*dy_mouse);
 
-        var opacity_line = pJS.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1/pJS.interactivity.modes.grab.line_linked.opacity)) / pJS.interactivity.modes.grab.distance;
+    //   /* draw a line between the cursor and the particle if the distance between them is under the config distance */
+    //   if(dist_mouse <= pJS.interactivity.modes.grab.distance){
 
-        if(opacity_line > 0){
+    //     var opacity_line = pJS.interactivity.modes.grab.line_linked.opacity - (dist_mouse / (1/pJS.interactivity.modes.grab.line_linked.opacity)) / pJS.interactivity.modes.grab.distance;
 
-          /* style */
-          var color_line = pJS.particles.line_linked.color_rgb_line;
-          pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
-          pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
-          //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
+    //     if(opacity_line > 0){
+
+    //       /* style */
+    //       var color_line = pJS.particles.line_linked.color_rgb_line;
+    //       pJS.canvas.ctx.strokeStyle = 'rgba('+color_line.r+','+color_line.g+','+color_line.b+','+opacity_line+')';
+    //       pJS.canvas.ctx.lineWidth = pJS.particles.line_linked.width;
+    //       //pJS.canvas.ctx.lineCap = 'round'; /* performance issue */
           
-          /* path */
-          pJS.canvas.ctx.beginPath();
-          pJS.canvas.ctx.moveTo(p.x, p.y);
-          pJS.canvas.ctx.lineTo(pJS.interactivity.mouse.pos_x, pJS.interactivity.mouse.pos_y);
-          pJS.canvas.ctx.stroke();
-          pJS.canvas.ctx.closePath();
+    //       /* path */
+    //       pJS.canvas.ctx.beginPath();
+    //       pJS.canvas.ctx.moveTo(p.x, p.y);
+    //       pJS.canvas.ctx.lineTo(pJS.interactivity.mouse.pos_x, pJS.interactivity.mouse.pos_y);
+    //       pJS.canvas.ctx.stroke();
+    //       pJS.canvas.ctx.closePath();
 
-        }
+    //     }
 
-      }
+    //   }
 
-    }
+    // }
 
-  };
+  // };
 
 
 
@@ -1070,93 +1095,99 @@ var pJS = function(tag_id, params){
 
 
     /* detect mouse pos - on hover / click event */
-    if(pJS.interactivity.events.onhover.enable || pJS.interactivity.events.onclick.enable){
+    // PECT hier doen we niets mee
+    // if(pJS.interactivity.events.onhover.enable || pJS.interactivity.events.onclick.enable){
 
-      /* el on mousemove */
-      pJS.interactivity.el.addEventListener('mousemove', function(e){
+    //   /* el on mousemove */
+    //   pJS.interactivity.el.addEventListener('mousemove', function(e){
 
-        if(pJS.interactivity.el == window){
-          var pos_x = e.clientX,
-              pos_y = e.clientY;
-        }
-        else{
-          var pos_x = e.offsetX || e.clientX,
-              pos_y = e.offsetY || e.clientY;
-        }
+    //     if(pJS.interactivity.el == window){
+    //       var pos_x = e.clientX,
+    //           pos_y = e.clientY;
+    //     }
+    //     else{
+    //       var pos_x = e.offsetX || e.clientX,
+    //           pos_y = e.offsetY || e.clientY;
+    //     }
 
-        pJS.interactivity.mouse.pos_x = pos_x;
-        pJS.interactivity.mouse.pos_y = pos_y;
+    //     pJS.interactivity.mouse.pos_x = pos_x;
+    //     pJS.interactivity.mouse.pos_y = pos_y;
 
-        if(pJS.tmp.retina){
-          pJS.interactivity.mouse.pos_x *= pJS.canvas.pxratio;
-          pJS.interactivity.mouse.pos_y *= pJS.canvas.pxratio;
-        }
+    //     if(pJS.tmp.retina){
+    //       pJS.interactivity.mouse.pos_x *= pJS.canvas.pxratio;
+    //       pJS.interactivity.mouse.pos_y *= pJS.canvas.pxratio;
+    //     }
 
-        pJS.interactivity.status = 'mousemove';
+    //     pJS.interactivity.status = 'mousemove';
 
-      });
+    //   });
 
-      /* el on onmouseleave */
-      pJS.interactivity.el.addEventListener('mouseleave', function(e){
+    //   /* el on onmouseleave */
+    //   pJS.interactivity.el.addEventListener('mouseleave', function(e){
 
-        pJS.interactivity.mouse.pos_x = null;
-        pJS.interactivity.mouse.pos_y = null;
-        pJS.interactivity.status = 'mouseleave';
+    //     pJS.interactivity.mouse.pos_x = null;
+    //     pJS.interactivity.mouse.pos_y = null;
+    //     pJS.interactivity.status = 'mouseleave';
 
-      });
+    //   });
 
-    }
+    // }
 
     /* on click event */
-    if(pJS.interactivity.events.onclick.enable){
+    // PECT hier doen we niets mee
+    // if(pJS.interactivity.events.onclick.enable){
 
-      pJS.interactivity.el.addEventListener('click', function(){
+    //   pJS.interactivity.el.addEventListener('click', function(){
 
-        pJS.interactivity.mouse.click_pos_x = pJS.interactivity.mouse.pos_x;
-        pJS.interactivity.mouse.click_pos_y = pJS.interactivity.mouse.pos_y;
-        pJS.interactivity.mouse.click_time = new Date().getTime();
+    //     pJS.interactivity.mouse.click_pos_x = pJS.interactivity.mouse.pos_x;
+    //     pJS.interactivity.mouse.click_pos_y = pJS.interactivity.mouse.pos_y;
+    //     pJS.interactivity.mouse.click_time = new Date().getTime();
 
-        if(pJS.interactivity.events.onclick.enable){
+    //     if(pJS.interactivity.events.onclick.enable){
 
-          switch(pJS.interactivity.events.onclick.mode){
+    //       switch(pJS.interactivity.events.onclick.mode){
 
-            case 'push':
-              if(pJS.particles.move.enable){
-                pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
-              }else{
-                if(pJS.interactivity.modes.push.particles_nb == 1){
-                  pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
-                }
-                else if(pJS.interactivity.modes.push.particles_nb > 1){
-                  pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb);
-                }
-              }
-            break;
+    //         // PECT we gebruiken geen push
+    //         // case 'push':
+    //         //   if(pJS.particles.move.enable){
+    //         //     pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
+    //         //   }else{
+    //         //     if(pJS.interactivity.modes.push.particles_nb == 1){
+    //         //       pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
+    //         //     }
+    //         //     else if(pJS.interactivity.modes.push.particles_nb > 1){
+    //         //       pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb);
+    //         //     }
+    //         //   }
+    //         // break;
 
-            case 'remove':
-              pJS.fn.modes.removeParticles(pJS.interactivity.modes.remove.particles_nb);
-            break;
+    //         // PECT we gebruiken geen remove
+    //         // case 'remove':
+    //         //   pJS.fn.modes.removeParticles(pJS.interactivity.modes.remove.particles_nb);
+    //         // break;
 
-            case 'bubble':
-              pJS.tmp.bubble_clicking = true;
-            break;
+    //         // PECT we gebruiken geen bubble
+    //         // case 'bubble':
+    //         //   pJS.tmp.bubble_clicking = true;
+    //         // break;
 
-            case 'repulse':
-              pJS.tmp.repulse_clicking = true;
-              pJS.tmp.repulse_count = 0;
-              pJS.tmp.repulse_finish = false;
-              setTimeout(function(){
-                pJS.tmp.repulse_clicking = false;
-              }, pJS.interactivity.modes.repulse.duration*1000)
-            break;
+    //         // PECT we gebruiken geen repulse
+    //         // case 'repulse':
+    //         //   pJS.tmp.repulse_clicking = true;
+    //         //   pJS.tmp.repulse_count = 0;
+    //         //   pJS.tmp.repulse_finish = false;
+    //         //   setTimeout(function(){
+    //         //     pJS.tmp.repulse_clicking = false;
+    //         //   }, pJS.interactivity.modes.repulse.duration*1000)
+    //         // break;
 
-          }
+    //       }
 
-        }
+    //     }
 
-      });
+    //   });
         
-    }
+    // }
 
 
   };
@@ -1177,7 +1208,8 @@ var pJS = function(tag_id, params){
       /* add or remove X particles */
       var missing_particles = pJS.particles.array.length - nb_particles;
       if(missing_particles < 0) pJS.fn.modes.pushParticles(Math.abs(missing_particles));
-      else pJS.fn.modes.removeParticles(missing_particles);
+      // PECT we verwijderen nooit particles
+      // else pJS.fn.modes.removeParticles(missing_particles);
 
     }
 
