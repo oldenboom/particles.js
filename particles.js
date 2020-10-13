@@ -72,7 +72,6 @@ var pJS = function(tag_id, params){
         width: 1
       },
       move: {
-        enable: true,
         speed: 2,
         direction: 'none',
         random: false,
@@ -165,16 +164,6 @@ var pJS = function(tag_id, params){
 
           pJS.canvas.el.width = pJS.canvas.w;
           pJS.canvas.el.height = pJS.canvas.h;
-
-          /* repaint canvas on anim disabled */
-          // PECT particles.move.enable is altijd true
-          // if(!pJS.particles.move.enable){
-          //   pJS.fn.particlesEmpty();
-          //   pJS.fn.particlesCreate();
-          //   pJS.fn.particlesDraw();
-          //   // PECT geen density nodig
-          //   // pJS.fn.vendors.densityAutoParticles();
-          // }
 
         /* density particles enabled */
         // PECT geen density nodig
@@ -471,12 +460,9 @@ var pJS = function(tag_id, params){
       // }
 
       /* move the particle */
-      // PECT particles.move.enable is altijd true
-      // if(pJS.particles.move.enable){
-        var ms = pJS.particles.move.speed/2;
-        p.x += p.vx * ms;
-        p.y += p.vy * ms;
-      // }
+      var ms = pJS.particles.move.speed/2;
+      p.x += p.vx * ms;
+      p.y += p.vy * ms;
 
       /* change opacity status */
       if(pJS.particles.opacity.anim.enable) {
@@ -685,10 +671,6 @@ var pJS = function(tag_id, params){
         )
       )
       if(i == nb-1){
-        // PECT particles.move.enable is altijd true
-        // if(!pJS.particles.move.enable){
-        //   pJS.fn.particlesDraw();
-        // }
         pJS.tmp.pushing = false;
       }
     }
@@ -885,9 +867,6 @@ var pJS = function(tag_id, params){
 
         if(pJS.tmp.count_svg >= pJS.particles.number.value){
           pJS.fn.particlesDraw();
-          // PECT particles.move.enable is altijd true
-          // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-          // else 
           pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
         }else{
           //console.log('still loading...');
@@ -898,9 +877,6 @@ var pJS = function(tag_id, params){
 
         if(pJS.tmp.img_obj != undefined){
           pJS.fn.particlesDraw();
-          // PECT particles.move.enable is altijd true
-          // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-          // else 
           pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
         }else{
           if(!pJS.tmp.img_error) pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
@@ -910,9 +886,6 @@ var pJS = function(tag_id, params){
 
     }else{
       pJS.fn.particlesDraw();
-      // PECT particles.move.enable is altijd true
-      // if(!pJS.particles.move.enable) cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
-      // else 
       pJS.fn.drawAnimFrame = requestAnimFrame(pJS.fn.vendors.draw);
     }
 
