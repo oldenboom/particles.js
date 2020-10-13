@@ -199,7 +199,9 @@ var pJS = function(tag_id, params){
       }
     }
 
+
     /* position */
+    // @todo Initial location of dot
     this.x = position ? position.x : Math.random() * pJS.canvas.w;
     this.y = position ? position.y : Math.random() * pJS.canvas.h;
 
@@ -252,7 +254,7 @@ var pJS = function(tag_id, params){
     }
 
     /* opacity */
-    this.opacity = (pJS.particles.opacity.random ? Math.random() : 1) * pJS.particles.opacity.value;
+    this.opacity = (pJS.particles.opacity.random ? Math.random() : opacity) * pJS.particles.opacity.value;
     if(pJS.particles.opacity.anim.enable){
       this.opacity_status = false;
       this.vo = pJS.particles.opacity.anim.speed / 100;

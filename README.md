@@ -35,7 +35,7 @@ key | option type / notes | example
 `particles.shape.image.src` | path link <br /> svg / png / gif / jpg | `"assets/img/yop.svg"` <br /> `"http://mywebsite.com/assets/img/yop.png"`
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
 `particles.shape.image.height` | number <br />(for aspect ratio) | `100`
-`particles.opacity.value` | number (0 to 1) | `0.75`
+`particles.opacity.value` | number (0 to 1) | `0.75`<br />In VincentGareau version not functional<br/>but here it is
 `particles.opacity.random` | boolean | `true` / `false` 
 `particles.opacity.anim.enable` | boolean | `true` / `false` 
 `particles.opacity.anim.speed` | number | `3`
