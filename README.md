@@ -16,7 +16,7 @@ http://codepen.io/VincentGarreau/pen/pnlso
 -------------------------------
 ### `This fork`
 
-With this fork a lot of functionality got removed from the original particles.js. Also some functionality got added.
+With this fork a lot of functionality got removed from the original particles.js. Also some functionality might be added.
 
 -------------------------------
 
@@ -78,37 +78,3 @@ key | option type / notes | example
 `interactivity.events.modes.push.particles_nb` NOT SUPPORTED
 `interactivity.events.modes.push.particles_nb` NOT SUPPORTED
 `retina_detect` | boolean | `true` / `false`
-
--------------------------------
-
-### `Packages install`
-
-##### ***npm***
-https://www.npmjs.com/package/particles.js
-```
-npm install particles.js
-```
-
-##### ***Bower***
-```
-bower install particles.js --save
-```
-
-##### ***Rails Assets***
-```
-gem 'rails-assets-particles.js'
-```
-
-##### ***Meteor***
-https://atmospherejs.com/newswim/particles
-```
-meteor add newswim:particles
-```
-
--------------------------------
-
-### `Hosting / CDN`
-
-***Please use this host or your own to load particles.js on your projects***
-
-http://www.jsdelivr.com/#!particles.js
