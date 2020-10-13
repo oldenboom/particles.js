@@ -22,7 +22,7 @@ var pJS = function(tag_id, params){
       number: {
         value: 400,
         density: {
-          enable: true,
+          enable: false,
           value_area: 800
         }
       },
@@ -170,11 +170,13 @@ var pJS = function(tag_id, params){
             pJS.fn.particlesEmpty();
             pJS.fn.particlesCreate();
             pJS.fn.particlesDraw();
-            pJS.fn.vendors.densityAutoParticles();
+            // PECT geen density nodig
+            // pJS.fn.vendors.densityAutoParticles();
           }
 
         /* density particles enabled */
-        pJS.fn.vendors.densityAutoParticles();
+        // PECT geen density nodig
+        // pJS.fn.vendors.densityAutoParticles();
 
       });
 
@@ -723,24 +725,25 @@ var pJS = function(tag_id, params){
 
   pJS.fn.vendors.densityAutoParticles = function(){
 
-    if(pJS.particles.number.density.enable){
+    // PECT we hebben geen density nodig
+    // if(pJS.particles.number.density.enable){
 
-      /* calc area */
-      var area = pJS.canvas.el.width * pJS.canvas.el.height / 1000;
-      if(pJS.tmp.retina){
-        area = area/(pJS.canvas.pxratio*2);
-      }
+    //   /* calc area */
+    //   var area = pJS.canvas.el.width * pJS.canvas.el.height / 1000;
+    //   if(pJS.tmp.retina){
+    //     area = area/(pJS.canvas.pxratio*2);
+    //   }
 
-      /* calc number of particles based on density area */
-      var nb_particles = area * pJS.particles.number.value / pJS.particles.number.density.value_area;
+    //   /* calc number of particles based on density area */
+    //   var nb_particles = area * pJS.particles.number.value / pJS.particles.number.density.value_area;
 
-      /* add or remove X particles */
-      var missing_particles = pJS.particles.array.length - nb_particles;
-      if(missing_particles < 0) pJS.fn.modes.pushParticles(Math.abs(missing_particles));
-      // PECT we verwijderen nooit particles
-      // else pJS.fn.modes.removeParticles(missing_particles);
+    //   /* add or remove X particles */
+    //   var missing_particles = pJS.particles.array.length - nb_particles;
+    //   if(missing_particles < 0) pJS.fn.modes.pushParticles(Math.abs(missing_particles));
+    //   // PECT we verwijderen nooit particles
+    //   // else pJS.fn.modes.removeParticles(missing_particles);
 
-    }
+    // }
 
   };
 
@@ -939,7 +942,8 @@ var pJS = function(tag_id, params){
     pJS.fn.canvasSize();
     pJS.fn.canvasPaint();
     pJS.fn.particlesCreate();
-    pJS.fn.vendors.densityAutoParticles();
+    // PECT geen density nodig
+    // pJS.fn.vendors.densityAutoParticles();
 
     /* particles.line_linked - convert hex colors to rgb */
     pJS.particles.line_linked.color_rgb_line = hexToRgb(pJS.particles.line_linked.color);
