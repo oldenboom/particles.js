@@ -188,7 +188,7 @@ var pJS = function(tag_id, params){
 
   /* --------- pJS functions - particles ----------- */
 
-  pJS.fn.particle = function(color, opacity, position){
+  pJS.fn.particle = function(color, opacity, position, boundary){
 
     /* size */
     this.radius = (pJS.particles.size.random ? Math.random() : 1) * pJS.particles.size.value;
@@ -200,6 +200,12 @@ var pJS = function(tag_id, params){
       }
     }
 
+    /* set boundary in which the particle should remain */
+    console.log(pJS.particles.startpos);
+    this.min_x = boundary.min_x;
+    this.max_x = boundary.max_x;
+    this.min_y = boundary.min_y;
+    this.max_y = boundary.max_x;
 
     /* position */
     // @todo Initial location of dot
@@ -450,32 +456,45 @@ var pJS = function(tag_id, params){
     }
     else {
       // startpos = 'raster' or 'rasterstrict'
+      // Position the particles evenly spreaded over the screen
       let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.value);
       let columns = Math.round(pJS.canvas.w / side);
       let rows = Math.round(pJS.canvas.h / side);
       let cell = [];
       cell.width = Math.round(pJS.canvas.w / columns);
       cell.height = Math.round(pJS.canvas.h / rows);
-      pJS.particles.number.actual = columns * rows;
       
-      // Position the particles evenly spreaded over the screen
       let position = [];
       let boundary = [];
-      for(var i = 0; i < pJS.particles.number.actual; i++) {
-        boundary.min_x = (i % columns) * cell.width;
-        boundary.max_x = (i % columns + 1) * cell.width - 1;
-        boundary.min_y = parseInt(i/columns) * cell.height;
-        boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
-        if (pJS.particles.startpos == "raster") {
+
+      if (pJS.particles.startpos == 'raster') {
+        // The particles are placed somewhere in each raster cell
+        pJS.particles.number.actual = columns * rows;
+        for(var i = 0; i < pJS.particles.number.actual; i++) {
+          boundary.min_x = (i % columns) * cell.width;
+          boundary.max_x = (i % columns + 1) * cell.width - 1;
+          boundary.min_y = parseInt(i/columns) * cell.height;
+          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
           position.x = (i % columns) * cell.width + Math.random() * cell.width;
           position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height;
+          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
         }
-        else {
-          position.x = (i % columns) * cell.width ;
+      }
+      else {  // startpos = "rasterstrict"
+        // The particles are placed at the top left corner of the raster.
+        columns += 1;
+        rows += 1;
+        pJS.particles.number.actual = columns * rows;
+        for(var i = 0; i < pJS.particles.number.actual; i++) {
+          boundary.min_x = (i % columns) * cell.width;
+          boundary.max_x = (i % columns + 1) * cell.width - 1;
+          boundary.min_y = parseInt(i/columns) * cell.height;
+          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
+          position.x = (i % (columns)) * cell.width ;
           position.y = parseInt(i/columns) * cell.height ;
+          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
         }
-        pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
-      }    
+      }
     }
   };
 

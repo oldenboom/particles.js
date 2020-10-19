@@ -56,9 +56,9 @@ particlesJS('particles-js',
       },
       "line_linked": {
         "enable": true,
-        "distance": 150,
+        "distance": 200,
         "color": "#ffffff",
-        "opacity": 0.6,
+        "opacity": 0.8,
         "width": 1
       },
       "move": {
@@ -67,6 +67,7 @@ particlesJS('particles-js',
         "random": true,
         "straight": false,
         "bounce": true,
+        "stayonraster": true,
         // we ondersteunen alleen out_mode=bounce
         // "out_mode": "out",
         // PECT attract niet nodig
