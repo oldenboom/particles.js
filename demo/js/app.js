@@ -9,7 +9,7 @@ particlesJS('particles-js',
   {
     "particles": {
       "number": {
-        "value": 99,
+        "value": 80,
         "density": {
           "enable": false,
           "value_area": 800
@@ -17,10 +17,9 @@ particlesJS('particles-js',
       },
       "raster": {
         "enable": true,
-        "start": "strict",
-        "lock": false
+        "start": "loose",
+        "lock": true
       },
-      "startpos": "rasterstrict",
       "color": {
         "value": "#ffffff"
       },
@@ -43,7 +42,7 @@ particlesJS('particles-js',
         "value": 1,
         "random": false,
         "anim": {
-          "enable": false,
+          "enable": true,
           "speed": 1,
           "opacity_min": 0.1,
           "sync": false
@@ -53,7 +52,7 @@ particlesJS('particles-js',
         "value": 3,
         "random": true,
         "anim": {
-          "enable": true,
+          "enable": false,
           "speed": 10,
           "size_min": 2,
           "sync": false
@@ -67,12 +66,11 @@ particlesJS('particles-js',
         "width": 1
       },
       "move": {
-        "speed": 6,
+        "speed": 8,
         "direction": "none",
         "random": true,
         "straight": false,
         "bounce": true,
-        "stayonraster": true,
         // we ondersteunen alleen out_mode=bounce
         // "out_mode": "out",
         // PECT attract niet nodig

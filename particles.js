@@ -204,14 +204,14 @@ var pJS = function(tag_id, params){
     }
 
     /* set boundary in which the particle should remain */
-    // console.log(pJS.particles.startpos);
-    // this.min_x = boundary.min_x;
-    // this.max_x = boundary.max_x;
-    // this.min_y = boundary.min_y;
-    // this.max_y = boundary.max_x;
+    if (pJS.particles.raster.lock) {
+      this.min_x = boundary.min_x;
+      this.max_x = boundary.max_x;
+      this.min_y = boundary.min_y;
+      this.max_y = boundary.max_y;
+    }
 
     /* position */
-    // @todo Initial location of dot
     this.x = position ? position.x : Math.random() * pJS.canvas.w;
     this.y = position ? position.y : Math.random() * pJS.canvas.h;
 
@@ -469,7 +469,7 @@ var pJS = function(tag_id, params){
         rows += 1;
       }
 
-      pJS.particles.number.actual = columns * rows; // higher than pJS.particles.number.value
+      pJS.particles.number.actual = columns * rows; // Not exactly equal to pJS.particles.number.value;
       for(var i = 0; i < pJS.particles.number.actual; i++) {
         if (pJS.particles.raster.lock) {
           boundary.min_x = (i % columns) * cell.width;
@@ -558,31 +558,40 @@ var pJS = function(tag_id, params){
       //   }
       // }
 
-      if(p.x - p.radius > pJS.canvas.w){
-        p.x = new_pos.x_left;
-        p.y = Math.random() * pJS.canvas.h;
-      }
-      else if(p.x + p.radius < 0){
-        p.x = new_pos.x_right;
-        p.y = Math.random() * pJS.canvas.h;
-      }
-      if(p.y - p.radius > pJS.canvas.h){
-        p.y = new_pos.y_top;
-        p.x = Math.random() * pJS.canvas.w;
-      }
-      else if(p.y + p.radius < 0){
-        p.y = new_pos.y_bottom;
-        p.x = Math.random() * pJS.canvas.w;
-      }
+      // Code below breaks bouncing
+      // if(p.x - p.radius > pJS.canvas.w){
+      //   p.x = new_pos.x_left;
+      //   p.y = Math.random() * pJS.canvas.h;
+      // }
+      // else if(p.x + p.radius < 0){
+      //   p.x = new_pos.x_right;
+      //   p.y = Math.random() * pJS.canvas.h;
+      // }
+      // if(p.y - p.radius > pJS.canvas.h){
+      //   p.y = new_pos.y_top;
+      //   p.x = Math.random() * pJS.canvas.w;
+      // }
+      // else if(p.y + p.radius < 0){
+      //   p.y = new_pos.y_bottom;
+      //   p.x = Math.random() * pJS.canvas.w;
+      // }
 
       /* out of canvas modes */
       // PECT we ondersteunen uitsluitend bounce
       // switch(pJS.particles.move.out_mode){
       //   case 'bounce':
-          if (p.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
-          else if (p.x - p.radius < 0) p.vx = -p.vx;
-          if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
-          else if (p.y - p.radius < 0) p.vy = -p.vy;
+      if (!pJS.particles.raster.enable || (pJS.particles.raster.enable && !pJS.particles.raster.lock) ) {
+        if (p.x + p.radius > pJS.canvas.w) p.vx = -p.vx;
+        else if (p.x - p.radius < 0) p.vx = -p.vx;
+        if (p.y + p.radius > pJS.canvas.h) p.vy = -p.vy;
+        else if (p.y - p.radius < 0) p.vy = -p.vy;
+      }
+      else {  // pJS.particles.raster.lock
+        if (p.x + p.radius > p.max_x) p.vx = -p.vx;
+        else if (p.x - p.radius < p.min_x) p.vx = -p.vx;
+        if (p.y + p.radius > p.max_y) p.vy = -p.vy;
+        else if (p.y - p.radius < p.min_y) p.vy = -p.vy;
+      }
       //   break;
       // }
 
