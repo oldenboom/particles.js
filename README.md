@@ -7,6 +7,7 @@
 
 
 With this fork a lot of functionality got removed from the original 2.0.0 version of particles.js. Besides, some raster functionality has been added.
+
 -------------------------------
 ### `Demo`
 
