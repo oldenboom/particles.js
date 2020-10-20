@@ -5,7 +5,12 @@
 -------------------------------
 ### `This fork`
 
-With this fork a lot of functionality got removed from the original particles.js. Also some raster functionality has been added.
+
+With this fork a lot of functionality got removed from the original 2.0.0 version of particles.js. Besides, some raster functionality has been added.
+-------------------------------
+### `Demo`
+
+Clone or download the repo and load demo/index.html in your browser. Modify behaviour by changing settings in demo/app.js using the Options table below.
 
 -------------------------------
 
