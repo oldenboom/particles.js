@@ -2,21 +2,10 @@
 
 ### Very basic particles script
 
-------------------------------
-### `Original version`
-
-<a href="http://vincentgarreau.com/particles.js/" target="_blank"><img src="http://vincentgarreau.com/particles.js/assets/img/github-screen.jpg" alt="particles.js generator" /></a>
-
-Configure, export, and share your particles.js configuration on CodePen: <br />
-http://vincentgarreau.com/particles.js/
-
-CodePen demo: <br />
-http://codepen.io/VincentGarreau/pen/pnlso
-
 -------------------------------
 ### `This fork`
 
-With this fork a lot of functionality got removed from the original particles.js. Also some functionality might be added.
+With this fork a lot of functionality got removed from the original particles.js. Also some raster functionality has been added.
 
 -------------------------------
 
