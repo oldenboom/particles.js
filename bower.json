@@ -1,11 +1,12 @@
 {
   "name": "particles.js",
   "main": "particles.js",
-  "homepage": "https://github.com/VincentGarreau/particles.js",
+  "homepage": "https://github.com/oldenboom/particles.js",
   "authors": [
-    "Vincent Garreau <vin.garreau@gmail.com>"
+    "Vincent Garreau <vin.garreau@gmail.com>",
+    "Rembert Oldenboom <rembert@floating-point.nl>"
   ],
-  "description": "A lightweight JavaScript library for creating particles.",
+  "description": "A lightweight JavaScript library for creating particles on a raster. Based upon Vincent Garreau's particles.js.",
   "keywords": [
     "particle",
     "particles"
