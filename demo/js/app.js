@@ -17,7 +17,8 @@ particlesJS('particles-js',
       },
       "raster": {
         "enable": true,
-        "start": "loose"
+        "start": "strict",
+        "lock": false
       },
       "startpos": "rasterstrict",
       "color": {

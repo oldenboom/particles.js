@@ -43,6 +43,7 @@ key | option type / notes | example
 `particles.opacity.anim.sync` | boolean | `true` / `false`
 `particles.raster.enable` | boolean | `true` / `false`
 `particles.raster.start` | string | `"strict"` <br /> `"loose"`
+`particles.raster.lock` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
 `particles.size.random` | boolean | `true` / `false` 
 `particles.size.anim.enable` | boolean | `true` / `false` 

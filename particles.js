@@ -30,7 +30,6 @@ var pJS = function(tag_id, params){
         enable: false,
         startup: 'loose',
       },
-      startpos: 'random',
       color: {
         value: '#fff'
       },
@@ -453,8 +452,6 @@ var pJS = function(tag_id, params){
 
   pJS.fn.particlesCreate = function(){
     
-    console.log(pJS.particles.raster.enable);
-
     if (pJS.particles.raster.enable) {
       // Split the entire screen in square cells
       let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.value);
@@ -468,32 +465,33 @@ var pJS = function(tag_id, params){
       let boundary = [];
 
       if (pJS.particles.raster.start == 'strict') {
-        // Place particles at the top left corner of the raster
         columns += 1;
         rows += 1;
-        pJS.particles.number.actual = columns * rows; // higher than pJS.particles.number.value
-        for(var i = 0; i < pJS.particles.number.actual; i++) {
-          boundary.min_x = (i % columns) * cell.width;
-          boundary.max_x = (i % columns + 1) * cell.width - 1;
-          boundary.min_y = parseInt(i/columns) * cell.height;
-          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
-          position.x = (i % (columns)) * cell.width ;
-          position.y = parseInt(i/columns) * cell.height ;
-          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
-        }
       }
-      else {
-        // Place particle somewhere in each raster cell
-        pJS.particles.number.actual = columns * rows; // slightly lower than pJS.particles.number.value
-        for(var i = 0; i < pJS.particles.number.actual; i++) {
+
+      pJS.particles.number.actual = columns * rows; // higher than pJS.particles.number.value
+      for(var i = 0; i < pJS.particles.number.actual; i++) {
+        if (pJS.particles.raster.lock) {
           boundary.min_x = (i % columns) * cell.width;
           boundary.max_x = (i % columns + 1) * cell.width - 1;
           boundary.min_y = parseInt(i/columns) * cell.height;
           boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
+        }
+        if (pJS.particles.raster.start == 'strict') {
+          position.x = (i % (columns)) * cell.width ;
+          position.y = parseInt(i/columns) * cell.height;
+        }
+        else {
           position.x = (i % columns) * cell.width + Math.random() * cell.width;
           position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height;
-          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
         }
+        pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
+      }
+    }
+    else {
+      pJS.particles.number.actual = pJS.particles.number.value;
+      for(var i = 0; i < pJS.particles.number.actual; i++) {
+        pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value));
       }
     }
   };
