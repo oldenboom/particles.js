@@ -15,6 +15,10 @@ particlesJS('particles-js',
           "value_area": 800
         },
       },
+      "raster": {
+        "enable": true,
+        "start": "loose"
+      },
       "startpos": "rasterstrict",
       "color": {
         "value": "#ffffff"

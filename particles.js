@@ -26,6 +26,10 @@ var pJS = function(tag_id, params){
         //   value_area: 800
         // }
       },
+      raster: {
+        enable: false,
+        startup: 'loose',
+      },
       startpos: 'random',
       color: {
         value: '#fff'
@@ -201,11 +205,11 @@ var pJS = function(tag_id, params){
     }
 
     /* set boundary in which the particle should remain */
-    console.log(pJS.particles.startpos);
-    this.min_x = boundary.min_x;
-    this.max_x = boundary.max_x;
-    this.min_y = boundary.min_y;
-    this.max_y = boundary.max_x;
+    // console.log(pJS.particles.startpos);
+    // this.min_x = boundary.min_x;
+    // this.max_x = boundary.max_x;
+    // this.min_y = boundary.min_y;
+    // this.max_y = boundary.max_x;
 
     /* position */
     // @todo Initial location of dot
@@ -449,14 +453,10 @@ var pJS = function(tag_id, params){
 
   pJS.fn.particlesCreate = function(){
     
-    if (pJS.particles.startpos == "random") {
-      for(var i = 0; i < pJS.particles.number.value; i++) {
-        pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value));
-      }
-    }
-    else {
-      // startpos = 'raster' or 'rasterstrict'
-      // Position the particles evenly spreaded over the screen
+    console.log(pJS.particles.raster.enable);
+
+    if (pJS.particles.raster.enable) {
+      // Split the entire screen in square cells
       let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.value);
       let columns = Math.round(pJS.canvas.w / side);
       let rows = Math.round(pJS.canvas.h / side);
@@ -467,24 +467,11 @@ var pJS = function(tag_id, params){
       let position = [];
       let boundary = [];
 
-      if (pJS.particles.startpos == 'raster') {
-        // The particles are placed somewhere in each raster cell
-        pJS.particles.number.actual = columns * rows;
-        for(var i = 0; i < pJS.particles.number.actual; i++) {
-          boundary.min_x = (i % columns) * cell.width;
-          boundary.max_x = (i % columns + 1) * cell.width - 1;
-          boundary.min_y = parseInt(i/columns) * cell.height;
-          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
-          position.x = (i % columns) * cell.width + Math.random() * cell.width;
-          position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height;
-          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
-        }
-      }
-      else {  // startpos = "rasterstrict"
-        // The particles are placed at the top left corner of the raster.
+      if (pJS.particles.raster.start == 'strict') {
+        // Place particles at the top left corner of the raster
         columns += 1;
         rows += 1;
-        pJS.particles.number.actual = columns * rows;
+        pJS.particles.number.actual = columns * rows; // higher than pJS.particles.number.value
         for(var i = 0; i < pJS.particles.number.actual; i++) {
           boundary.min_x = (i % columns) * cell.width;
           boundary.max_x = (i % columns + 1) * cell.width - 1;
@@ -492,6 +479,19 @@ var pJS = function(tag_id, params){
           boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
           position.x = (i % (columns)) * cell.width ;
           position.y = parseInt(i/columns) * cell.height ;
+          pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
+        }
+      }
+      else {
+        // Place particle somewhere in each raster cell
+        pJS.particles.number.actual = columns * rows; // slightly lower than pJS.particles.number.value
+        for(var i = 0; i < pJS.particles.number.actual; i++) {
+          boundary.min_x = (i % columns) * cell.width;
+          boundary.max_x = (i % columns + 1) * cell.width - 1;
+          boundary.min_y = parseInt(i/columns) * cell.height;
+          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
+          position.x = (i % columns) * cell.width + Math.random() * cell.width;
+          position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height;
           pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
         }
       }

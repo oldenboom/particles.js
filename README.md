@@ -41,7 +41,8 @@ key | option type / notes | example
 `particles.opacity.anim.speed` | number | `3`
 `particles.opacity.anim.opacity_min` | number (0 to 1) | `0.25`
 `particles.opacity.anim.sync` | boolean | `true` / `false`
-`particles.startpos` | string | `"random"` <br /> `"raster"` <br /> `"rasterstrict"` 
+`particles.raster.enable` | boolean | `true` / `false`
+`particles.raster.start` | string | `"strict"` <br /> `"loose"`
 `particles.size.value` | number | `20`
 `particles.size.random` | boolean | `true` / `false` 
 `particles.size.anim.enable` | boolean | `true` / `false` 
