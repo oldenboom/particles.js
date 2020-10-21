@@ -1,8 +1,8 @@
-/* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
+/* ------------------------------------------------
+/* Author   : Vincent Garreau  - vincentgarreau.com
+/* Edited by: Rembert Oldenboom - floating-point.nl
+/* MIT license:  http://opensource.org/licenses/MIT
+/* GitHub : https://github.com/oldenboom/particles.js
 /* How to use? : Check the GitHub README
 /* v2.0.0
 /* ----------------------------------------------- */
@@ -27,8 +27,10 @@ var pJS = function(tag_id, params){
         // }
       },
       raster: {
-        enable: false,
+        enable: true,
         startup: 'loose',
+        lock: true,
+        offscreen: 50
       },
       color: {
         value: '#fff'
@@ -457,9 +459,17 @@ var pJS = function(tag_id, params){
       let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.value);
       let columns = Math.round(pJS.canvas.w / side);
       let rows = Math.round(pJS.canvas.h / side);
-      let cell = [];
+      let cell = [], shift_left = 0, shift_top = 0;
       cell.width = Math.round(pJS.canvas.w / columns);
       cell.height = Math.round(pJS.canvas.h / rows);
+
+      if (pJS.particles.raster.offscreen > 0 && pJS.particles.raster.offscreen <= 100) {
+        // The cells are grown with pJS.particles.raster.offscreen percent
+        shift_left = cell.width * (1 + pJS.particles.raster.offscreen / 100);
+        shift_top = cell.height * (1 + pJS.particles.raster.offscreen / 100);
+        cell.width = Math.round((pJS.canvas.w + shift_left * 2) / columns);
+        cell.height = Math.round((pJS.canvas.h + shift_top * 2) / rows);
+      }
       
       let position = [];
       let boundary = [];
@@ -472,18 +482,18 @@ var pJS = function(tag_id, params){
       pJS.particles.number.actual = columns * rows; // Not exactly equal to pJS.particles.number.value;
       for(var i = 0; i < pJS.particles.number.actual; i++) {
         if (pJS.particles.raster.lock) {
-          boundary.min_x = (i % columns) * cell.width;
-          boundary.max_x = (i % columns + 1) * cell.width - 1;
-          boundary.min_y = parseInt(i/columns) * cell.height;
-          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1;
+          boundary.min_x = (i % columns) * cell.width - shift_left;
+          boundary.max_x = (i % columns + 1) * cell.width - 1 - shift_left;
+          boundary.min_y = parseInt(i/columns) * cell.height - shift_top;
+          boundary.max_y = (1 + parseInt(i/columns)) * cell.height - 1 - shift_top;
         }
         if (pJS.particles.raster.start == 'strict') {
-          position.x = (i % (columns)) * cell.width ;
-          position.y = parseInt(i/columns) * cell.height;
+          position.x = (i % (columns)) * cell.width - shift_left;
+          position.y = parseInt(i/columns) * cell.height - shift_top;
         }
         else {
-          position.x = (i % columns) * cell.width + Math.random() * cell.width;
-          position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height;
+          position.x = (i % columns) * cell.width + Math.random() * cell.width - shift_left;
+          position.y = parseInt(i/columns) * cell.height + Math.random() * cell.height - shift_top;
         }
         pJS.particles.array.push(new pJS.fn.particle(pJS.particles.color, pJS.particles.opacity.value, position, boundary));
       }

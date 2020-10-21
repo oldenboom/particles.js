@@ -9,7 +9,7 @@ particlesJS('particles-js',
   {
     "particles": {
       "number": {
-        "value": 80,
+        "value": 100,
         "density": {
           "enable": false,
           "value_area": 800
@@ -18,7 +18,8 @@ particlesJS('particles-js',
       "raster": {
         "enable": true,
         "start": "loose",
-        "lock": true
+        "lock": true,
+        "offscreen": 75
       },
       "color": {
         "value": "#ffffff"
@@ -66,7 +67,7 @@ particlesJS('particles-js',
         "width": 1
       },
       "move": {
-        "speed": 8,
+        "speed": 4,
         "direction": "none",
         "random": true,
         "straight": false,
