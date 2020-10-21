@@ -20,11 +20,8 @@ var pJS = function(tag_id, params){
     },
     particles: {
       number: {
-        value: 400,
-        // density: {
-        //   enable: false,
-        //   value_area: 800
-        // }
+        value: 80,
+        dynamic: false
       },
       raster: {
         enable: true,
@@ -458,9 +455,19 @@ var pJS = function(tag_id, params){
 
   pJS.fn.particlesCreate = function(){
     
+    if (pJS.particles.number.dynamic) {
+      // Interprete pJS.particles.number as meant for 1920x1080. Scale accordingly
+      // This replaces the density-functionality as present in the Vincent Garreau version
+      let factor = pJS.particles.number.value / 1.024 * 0.768;
+      pJS.particles.number.actual = Math.round((pJS.canvas.w * pJS.canvas.h / 1000000) * factor);
+    }
+    else {
+      pJS.particles.number.actual = pJS.particles.number.value;
+    }
+
     if (pJS.particles.raster.enable) {
       // Split the entire screen in square cells
-      let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.value);
+      let side = Math.sqrt(pJS.canvas.w * pJS.canvas.h / pJS.particles.number.actual);
       let columns = Math.round(pJS.canvas.w / side);
       let rows = Math.round(pJS.canvas.h / side);
       let cell = [], shift_left = 0, shift_top = 0;
@@ -483,7 +490,8 @@ var pJS = function(tag_id, params){
         rows += 1;
       }
 
-      pJS.particles.number.actual = columns * rows; // Not exactly equal to pJS.particles.number.value;
+      pJS.particles.number.actual = columns * rows;
+      console.log(pJS.particles.number.actual);
       for(var i = 0; i < pJS.particles.number.actual; i++) {
         if (pJS.particles.raster.lock) {
           boundary.min_x = (i % columns) * cell.width - shift_left;

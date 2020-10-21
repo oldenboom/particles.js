@@ -10,10 +10,7 @@ particlesJS('particles-js',
     "particles": {
       "number": {
         "value": 100,
-        "density": {
-          "enable": false,
-          "value_area": 800
-        },
+        "dynamic": true
       },
       "raster": {
         "enable": true,
