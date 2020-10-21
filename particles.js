@@ -147,37 +147,33 @@ var pJS = function(tag_id, params){
     pJS.canvas.ctx = pJS.canvas.el.getContext('2d');
   };
 
+  pJS.fn.resizeHandler = function() {
+
+      pJS.canvas.w = pJS.canvas.el.offsetWidth;
+      pJS.canvas.h = pJS.canvas.el.offsetHeight;
+
+      /* resize canvas */
+      if(pJS.tmp.retina){
+        pJS.canvas.w *= pJS.canvas.pxratio;
+        pJS.canvas.h *= pJS.canvas.pxratio;
+      }
+
+      pJS.canvas.el.width = pJS.canvas.w;
+      pJS.canvas.el.height = pJS.canvas.h;
+
+      if (pJS.particles.raster.enable) {
+        pJS.fn.particlesEmpty();
+        pJS.fn.particlesCreate();
+      }
+    };
+
   pJS.fn.canvasSize = function(){
 
     pJS.canvas.el.width = pJS.canvas.w;
     pJS.canvas.el.height = pJS.canvas.h;
 
     if(pJS && pJS.interactivity.events.resize){
-
-      window.addEventListener('resize', function(){
-
-        if (pJS.particles.raster.enable) {
-          pJS.fn.particlesEmpty();
-          pJS.fn.particlesCreate();
-        }
-          pJS.canvas.w = pJS.canvas.el.offsetWidth;
-          pJS.canvas.h = pJS.canvas.el.offsetHeight;
-
-          /* resize canvas */
-          if(pJS.tmp.retina){
-            pJS.canvas.w *= pJS.canvas.pxratio;
-            pJS.canvas.h *= pJS.canvas.pxratio;
-          }
-
-          pJS.canvas.el.width = pJS.canvas.w;
-          pJS.canvas.el.height = pJS.canvas.h;
-
-        /* density particles enabled */
-        // PECT geen density nodig
-        // pJS.fn.vendors.densityAutoParticles();
-
-      });
-
+      window.addEventListener('resize', debounce(pJS.fn.resizeHandler,250));
     }
 
   };
@@ -1100,6 +1096,25 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+// Taken from Underscore.js by https://davidwalsh.name/function-debounce
+debounce = function(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
 /* ---------- particles.js functions - start ------------ */
 

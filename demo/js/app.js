@@ -9,7 +9,7 @@ particlesJS('particles-js',
   {
     "particles": {
       "number": {
-        "value": 100,
+        "value": 80,
         "dynamic": true
       },
       "raster": {
