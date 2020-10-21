@@ -159,6 +159,10 @@ var pJS = function(tag_id, params){
 
       window.addEventListener('resize', function(){
 
+        if (pJS.particles.raster.enable) {
+          pJS.fn.particlesEmpty();
+          pJS.fn.particlesCreate();
+        }
           pJS.canvas.w = pJS.canvas.el.offsetWidth;
           pJS.canvas.h = pJS.canvas.el.offsetHeight;
 
