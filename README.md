@@ -24,8 +24,8 @@ When set to true the raster will be rebuilt upon a resize window event.
 When set to `strict` every particle will start in the top-left corner of the cell it is bound to. This visualizes the cell-raster at 
 the start. When set to `loose` particles will start at a random location within the cell it is bound to.
 
-When set to strict, set particles.raster.lock to false, otherwise the effect will look rather unnerving. This could be enhanced but
-is out of scope of the current implementation.
+When set to strict, set particles.raster.lock to false, otherwise the effect will look rather unnerving. This functionality could be enhanced 
+but that's out of scope of the current implementation.
 
 **particles.raster.lock**
 

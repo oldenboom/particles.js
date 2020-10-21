@@ -487,7 +487,6 @@ var pJS = function(tag_id, params){
       }
 
       pJS.particles.number.actual = columns * rows;
-      console.log(pJS.particles.number.actual);
       for(var i = 0; i < pJS.particles.number.actual; i++) {
         if (pJS.particles.raster.lock) {
           boundary.min_x = (i % columns) * cell.width - shift_left;
