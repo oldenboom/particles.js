@@ -5,13 +5,7 @@
 -------------------------------
 ### `This fork`
 
-
-With this fork a lot of functionality got removed from the original 2.0.0 version of particles.js. Besides, some raster functionality has been added.
-
--------------------------------
-### `Demo`
-
-Clone or download the repo and load demo/index.html in your browser. Modify behaviour by changing settings in demo/app.js using the Options table below.
+With this fork a lot of functionality got removed from the original particles.js. Also some raster functionality has been added.
 
 -------------------------------
 
@@ -35,6 +29,7 @@ key | option type / notes | example
 `particles.opacity.anim.opacity_min` | number (0 to 1) | `0.25`
 `particles.opacity.anim.sync` | boolean | `true` / `false`
 `particles.raster.enable` | boolean | `true` / `false`
+`particles.raster.offscreen` | number (0 to 100) | `50`
 `particles.raster.start` | string | `"strict"` <br /> `"loose"`
 `particles.raster.lock` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
